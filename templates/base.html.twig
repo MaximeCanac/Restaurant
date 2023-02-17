@@ -15,7 +15,7 @@
  
     
 
-<nav class="navbar navbar-expand-lg bg-success-subtle">
+<nav class="navbar navbar-expand-lg bg-success ">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{path('app_accueil') }}">Hotel restaurant Le Café de Paris</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,26 +27,35 @@
           <a class="nav-link active" aria-current="page" href="#"></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{path('app_menu') }}">Menu</a>
+         <button class="btn btn-outline-succes">
+          <a class="nav-link " href="{{path('app_menu') }}">Menu</a>
+          </button>
         </li>
       
         </li>
         <li class="nav-item dropdown">
           <li class="nav-item">
+           <button class="btn btn-outline-Danger">
           <a class="nav-link" href="{{path('app_avis') }}">Avis</a>
+          </button>
         </li>
         <li class="nav-item">
+         <button class="btn btn-outline-succes">
           <a class="nav-link" href="{{path('app_blog') }}">Blog</a>
+          </button>
         </li>
         <li class="nav-item dropdown">
           <li class="nav-item">
+           <button class="btn btn-outline-succes">
           <a class="nav-link" href="{{path('app_avis') }}">Avis</a>
+          </button>
         </li>
         <li class="nav-item dropdown">
          <li class="nav-item">
-          <a class="nav-link" href="{{path('app_avis') }}">Connexion</a>
+         <button class="btn btn-outline-succes">
+          <a class="nav-link"  href="{{path('app_login') }}">Connexion</a>
+          </button>
           </ul>
-          <button class=pull-right>Connexion</button>
         </li>
       </ul>
     </div>
