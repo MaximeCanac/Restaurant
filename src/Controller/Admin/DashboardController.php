@@ -41,10 +41,12 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('Café de Paris');
+            setFaviconPath('favicon.svg');
     }
 
     public function configureMenuItems(): iterable
     {
+        yield MenuItem::linkToRoute('Accueil', 'fa fa-home ','app_accueil');
         yield MenuItem::linkToDashboard('Tableau de bord', 'fa fa-home');
          yield MenuItem::linkToCrud('Plats', 'fas fa-list', plats::class);
     }
