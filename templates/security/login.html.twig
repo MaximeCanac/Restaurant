@@ -6,9 +6,13 @@
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+   
     {% endif %}
-
-    <br>
+    {% if app.user %}
+ <div class="h4 mb-3 font-weight-normal , center ">
+            Vous étes déjà connecté  </div> 
+    {% endif %}
+    <br> <br>
     <center>
     <h1 class="h3 mb-3 font-weight-normal">Merci de vous connecter</h1>
     <br>
@@ -37,6 +41,7 @@
             </label>
         </div>
     #}
+
 <br>
     <button class="btn btn-lg btn-success" type="submit">
         Connexion
@@ -44,15 +49,12 @@
     </div>
 </form>
 <br>
- {% if app.user %}
  
-        <div class="flex-container">
-            Vous étes connecter en tant que {{ app.user.userIdentifier }}: 
             
-            <button class="btn btn-lg btn-success" type="submit"    >
+            <button class="btn btn-lg btn-success , center" type="submit"    >
     <a href="{{ path('app_logout') }}" class="text-decoration-none text-light ">Deconnexion</a>
             </button>
-        </div>
+       
          </center> 
-    {% endif %}
+    
 {% endblock %}
