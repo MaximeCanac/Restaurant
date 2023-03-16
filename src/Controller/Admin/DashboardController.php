@@ -41,7 +41,7 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('Café de Paris');
-            setFaviconPath('favicon.svg');
+           
     }
 
     public function configureMenuItems(): iterable

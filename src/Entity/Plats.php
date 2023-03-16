@@ -22,6 +22,15 @@ class Plats
     #[ORM\Column(nullable: true)]
     private ?float $prix = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $type = null;
+
+  
+
+    
+
+    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,4 +71,23 @@ class Plats
 
         return $this;
     }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(?string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    
+    
+
+    
+
+    
 }
