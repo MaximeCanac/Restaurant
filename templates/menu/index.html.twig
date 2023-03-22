@@ -1,40 +1,22 @@
+{# templates/menu/index.html.twig #}
+
 {% extends 'base.html.twig' %}
-
 {% block title %}Menu{% endblock %}
-
 {% block body %}
+<h1>Menu</h1>
+<h2>Entrées</h2>
+{% for plats in entrees %}
+    <div>{{ plats.nom }} - {{ plats.prix }} €</div>
+{% endfor %}
 
- <center>   <h1> Menu du jour:</h1> </center>
+<h2>Plats principaux</h2>
+{% for plats in plats %}
+    <div>{{ plats.nom }} - {{ plats.prix }} €</div>
+{% endfor %}
 
-   <br> <br> <center> <p> Menu (entrée + plat + desert): 20.00€</p>
-    <p>Formule (entrée + plat + dessert): 17.00€ </p>
-    
-    <br> <br> <h2> Entrée: </h2>
-    <br>
-<p>Soupe de poisons</p>
-<p>Bagna cauda de crevettes</p>
-<p>Vitello-tomato</p>
- <p>Brouillade froide de jambon au sirop de tomate</p>
-
-
- <br> <br> <h2> Plat: </h2>
-    <br>
-<p>Gras doubles cuisinés à la provençal</p>
-<p>Lapin sauté, chasseur</p>
-<p>Parmentier de boeuf aux oignons rouges</p>
- <p>risotto de légumes</p>
- <p>pièce de boeuf a l'échalotte / grattin dauphinois</p>
- <p>Brandade de morue </p>
-
-  <br> <br> <h2> Dessert: </h2>
-    <br>
-<p>Mousse au chocolat</p>
-<p>clafoutis aux cerises</p>
-<p>crème brulée</p>
- <p>Marmelade de fraises /rhubarbe</p>
- <p>Assiette de fromage</p>
- 
-
-</center>
-
+<h2>Desserts</h2>
+{% for plats in desserts %}
+    <div>{{ plats.nom }} - {{ plats.prix }} €</div>
+{% endfor %}
 {% endblock %}
+
