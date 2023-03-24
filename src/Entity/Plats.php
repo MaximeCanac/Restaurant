@@ -29,8 +29,6 @@ class Plats
 
     
 
-    
-
     public function getId(): ?int
     {
         return $this->id;

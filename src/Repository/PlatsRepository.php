@@ -39,6 +39,35 @@ class PlatsRepository extends ServiceEntityRepository
         }
     }
 
+    public function savePlatsSelectionnes(array $platsSelectionnes): void
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->update()
+            ->set('p.selectionne', 'false')
+            ->getQuery();
+        $qb->execute();
+
+        foreach ($platsSelectionnes as $platId) {
+            $qb = $this->createQueryBuilder('p')
+                ->update()
+                ->set('p.selectionne', 'true')
+                ->where('p.id = :id')
+                ->setParameter('id', $platId)
+                ->getQuery();
+            $qb->execute();
+        }
+    }
+
+    public function getPlatsSelectionnes(): array
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.selectionne = :selectionne')
+            ->setParameter('selectionne', true)
+            ->orderBy('p.type')
+            ->getQuery();
+        return $qb->getResult();
+    }
+}
 //    /**
 //     * @return Plats[] Returns an array of Plats objects
 //     */
