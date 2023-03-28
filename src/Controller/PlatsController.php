@@ -1,35 +1,29 @@
 <?php
+// src/Controller/SelectionController.php
 
 namespace App\Controller;
 
 use App\Entity\Plats;
-use App\Form\PlatsFormType;
+use App\Form\SelectionType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Reponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
 
-class PlatsController extends AbstractController
+class SelectionController extends AbstractController
 {
-    
-    #[Route('/plats', name: 'plats')]
-    public function plats(Request $request, EntityManagerInterface $entityManager)
+    /**
+     * @Route("/selection", name="selection")
+     */
+    public function selection(Request $request): Response
     {
-        $plats = $entityManager->getRepository(Plats::class)->findAll();
-
-        $form = $this->createForm(PlatsFormType::class, null, [
-            'plats' => $plats,
-        ]);
-
+        $form = $this->createForm(SelectionType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-
-            $entrees = $data['entrees'];
-            $plats = $data['plats'];
-            $desserts = $data['desserts'];
+            $entrees = $form->get('entrees')->getData();
+            $plats = $form->get('plats')->getData();
+            $desserts = $form->get('desserts')->getData();
 
             return $this->render('plats/selection.html.twig', [
                 'entrees' => $entrees,
