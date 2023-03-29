@@ -25,7 +25,10 @@ class Plats
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $type = null;
 
-  
+    public function __toString()
+    {
+        return $this->nom;
+    }
 
     
 
