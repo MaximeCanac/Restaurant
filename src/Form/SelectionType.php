@@ -2,7 +2,7 @@
 // src/Form/SelectionType.php
 
 namespace App\Form;
-namespace App\Repository;
+
 
 use App\Entity\Plats;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Repository\PlatsRepository;
 
 class SelectionType extends AbstractType
 {

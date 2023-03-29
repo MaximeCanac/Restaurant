@@ -12,9 +12,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SelectionController extends AbstractController
 {
-    /**
-     * @Route("/selection", name="selection")
-     */
+    
+    #[Route('/selection', name: 'selection')]
     public function selection(Request $request): Response
     {
         $form = $this->createForm(SelectionType::class);
@@ -25,14 +24,14 @@ class SelectionController extends AbstractController
             $plats = $form->get('plats')->getData();
             $desserts = $form->get('desserts')->getData();
 
-            return $this->render('plats/selection.html.twig', [
+            return $this->render('selection/selection.html.twig', [
                 'entrees' => $entrees,
                 'plats' => $plats,
                 'desserts' => $desserts,
             ]);
         }
 
-        return $this->render('plats/index.html.twig', [
+        return $this->render('selection/index.html.twig', [
             'form' => $form->createView(),
         ]);
     }
