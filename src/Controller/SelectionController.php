@@ -25,9 +25,11 @@ class SelectionController extends AbstractController
             $desserts = $form->get('desserts')->getData();
 
             return $this->render('selection/selection.html.twig', [
+                
                 'entrees' => $entrees,
                 'plats' => $plats,
                 'desserts' => $desserts,
+                
             ]);
         }
 
