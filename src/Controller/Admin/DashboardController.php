@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Plats;
+use App\Entity\Selection;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -17,6 +18,7 @@ class DashboardController extends AbstractDashboardController
     {
         $routeBuilder = $this->container->get(AdminUrlGenerator::class);
         $url = $routeBuilder->setController(PlatsCrudController::class)->generateUrl();
+        $url = $routeBuilder->setController(SelectionCrudController::class)->generateUrl();
 
         return $this->redirect($url);
 
