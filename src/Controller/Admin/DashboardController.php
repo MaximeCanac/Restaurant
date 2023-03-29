@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
-    #[Route('/admin', name: 'admin')]
+    #[Route('/admin', name: 'app_admin')]
     public function index(): Response
     {
         $routeBuilder = $this->container->get(AdminUrlGenerator::class);
@@ -47,7 +47,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToRoute('Accueil', 'fa fa-home ','app_accueil');
-        yield MenuItem::linkToDashboard('Tableau de bord', 'fa fa-home');
-         yield MenuItem::linkToCrud('Plats', 'fas fa-list', plats::class);
+        
+        yield MenuItem::linkToCrud('Plats', 'fas fa-list', plats::class);
     }
 }
