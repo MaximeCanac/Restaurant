@@ -21,29 +21,35 @@ class SelectionController extends AbstractController
         $form = $this->createForm(SelectionType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entrees = $form->get('entrees')->getData();
-            $plats = $form->get('plats')->getData();
-            $desserts = $form->get('desserts')->getData();
+        if ($form->isSubmitted() && $form->isValid())
+            {
+                $entrees = $form->get('entrees')->getData();
+                $plats = $form->get('plats')->getData();
+                $desserts = $form->get('desserts')->getData();
 
-// Créez une instance de l'entité Selection et définit ses propriétés
-            $selection = new Selection();
-            $selection->setEntrees($entrees);
-            $selection->setPlats($plats);
-            $selection->setDesserts($desserts);
-
- // Persiste l'objet dans la base de données
-            $entityManager->persist($selection);
-            $entityManager->flush();
-
-            return $this->render('selection/selection.html.twig', [
+                $selection = $entityManager->getRepository(Selection::class)->findOneBy([]);
+                if (!$selection)
+                    {
+                        $selection = new Selection();
+                        $selection->setEntrees($entrees);
+                        $selection->setPlats($plats);
+                        $selection->setDesserts($desserts);
+                    }
                 
-                'entrees' => $entrees,
-                'plats' => $plats,
-                'desserts' => $desserts,
                 
-            ]);
-        }
+
+                // Persiste l'objet dans la base de données
+                $entityManager->persist($selection);
+                $entityManager->flush();
+
+                return $this->render('selection/selection.html.twig', [
+                    
+                    'entrees' => $entrees,
+                    'plats' => $plats,
+                    'desserts' => $desserts,
+                    
+                ]);
+            }
 
         return $this->render('selection/index.html.twig', [
             'form' => $form->createView(),
