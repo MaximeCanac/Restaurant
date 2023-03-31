@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Plats;
+use App\Entity\Plat;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Plats>
+ * @extends ServiceEntityRepository<Plat>
  *
- * @method Plats|null find($id, $lockMode = null, $lockVersion = null)
- * @method Plats|null findOneBy(array $criteria, array $orderBy = null)
- * @method Plats[]    findAll()
- * @method Plats[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Plat|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Plat|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Plat[]    findAll()
+ * @method Plat[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PlatsRepository extends ServiceEntityRepository
+class PlatRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Plats::class);
+        parent::__construct($registry, Plat::class);
     }
 
-    public function save(Plats $entity, bool $flush = false): void
+    public function save(Plat $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class PlatsRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Plats $entity, bool $flush = false): void
+    public function remove(Plat $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -39,10 +39,8 @@ class PlatsRepository extends ServiceEntityRepository
         }
     }
 
-   
-
 //    /**
-//     * @return Plats[] Returns an array of Plats objects
+//     * @return Plat[] Returns an array of Plat objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -56,7 +54,7 @@ class PlatsRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Plats
+//    public function findOneBySomeField($value): ?Plat
 //    {
 //        return $this->createQueryBuilder('p')
 //            ->andWhere('p.exampleField = :val')
