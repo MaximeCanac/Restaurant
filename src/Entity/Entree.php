@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\PlatsRepository;
+use App\Repository\EntreeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PlatsRepository::class)]
-class Plats
+#[ORM\Entity(repositoryClass: EntreeRepository::class)]
+class Entree
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -20,17 +22,19 @@ class Plats
     private ?string $ingredient = null;
 
     #[ORM\Column(nullable: true)]
-    private ?float $prix = null;
+    private ?int $prix = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $type = null;
+    #[ORM\ManyToMany(targetEntity: Menu::class, mappedBy: 'entrees')]
+    private Collection $entrees;
 
+    public function __construct()
+    {
+        $this->entrees = new ArrayCollection();
+    }
     public function __toString()
     {
         return $this->nom;
     }
-
-    
 
     public function getId(): ?int
     {
@@ -61,34 +65,42 @@ class Plats
         return $this;
     }
 
-    public function getPrix(): ?float
+    public function getPrix(): ?int
     {
         return $this->prix;
     }
 
-    public function setPrix(?float $prix): self
+    public function setPrix(?int $prix): self
     {
         $this->prix = $prix;
 
         return $this;
     }
 
-    public function getType(): ?string
+    /**
+     * @return Collection<int, Menu>
+     */
+    public function getEntrees(): Collection
     {
-        return $this->type;
+        return $this->entrees;
     }
 
-    public function setType(?string $type): self
+    public function addEntree(Menu $entree): self
     {
-        $this->type = $type;
+        if (!$this->entrees->contains($entree)) {
+            $this->entrees->add($entree);
+            $entree->addEntree($this);
+        }
 
         return $this;
     }
 
-    
-    
+    public function removeEntree(Menu $entree): self
+    {
+        if ($this->entrees->removeElement($entree)) {
+            $entree->removeEntree($this);
+        }
 
-    
-
-    
+        return $this;
+    }
 }

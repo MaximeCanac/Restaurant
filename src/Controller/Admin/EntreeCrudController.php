@@ -2,14 +2,14 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Selection;
+use App\Entity\Entree;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class SelectionCrudController extends AbstractCrudController
+class EntreeCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Selection::class;
+        return Entree::class;
     }
 
     /*

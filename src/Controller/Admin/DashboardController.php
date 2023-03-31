@@ -2,8 +2,10 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Plats;
-use App\Entity\Selection;
+use App\Entity\Entree;
+use App\Entity\Plat;
+use App\Entity\Dessert;
+use App\Entity\Menu;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -17,8 +19,11 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
         $routeBuilder = $this->container->get(AdminUrlGenerator::class);
-        $url = $routeBuilder->setController(PlatsCrudController::class)->generateUrl();
-        $url = $routeBuilder->setController(SelectionCrudController::class)->generateUrl();
+        
+        $url = $routeBuilder->setController(EntreeCrudController::class)->generateUrl();
+        $url = $routeBuilder->setController(PlatCrudController::class)->generateUrl();
+        $url = $routeBuilder->setController(DessertCrudController::class)->generateUrl();
+        $url = $routeBuilder->setController(MenuCrudController::class)->generateUrl();
 
         return $this->redirect($url);
 
@@ -50,7 +55,10 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToRoute('Accueil', 'fa fa-home ','app_accueil');
         
-        yield MenuItem::linkToCrud('Plats', 'fas fa-list', plats::class);
-        yield MenuItem::linkToCrud('selection', 'fas fa-list', selection::class);
+        
+        yield MenuItem::linkToCrud('Entree', 'fas fa-list', Entree::class);
+        yield MenuItem::linkToCrud('Plat', 'fas fa-list', Plat::class);
+        yield MenuItem::linkToCrud('Dessert', 'fas fa-list', Dessert::class);
+        yield MenuItem::linkToCrud('Menu', 'fas fa-list', Menu::class);
     }
 }
