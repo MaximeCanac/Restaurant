@@ -24,6 +24,7 @@ class MenuController extends AbstractController
     public function create(Request $request): Response
     {
         $menu = new Menu();
+        $menu->setDateCreation(new \DateTime());
         $form = $this->createForm(MenuType::class, $menu);
 
         $form->handleRequest($request);
@@ -39,6 +40,16 @@ class MenuController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    #[Route(path: '/menu/last', name: 'menu_last')]
+    public function last(): Response
+    {
+        $menu = $this->entityManager->getRepository(Menu::class)->findOneBy([], ['dateCreation' => 'DESC']);
+
+        return $this->render('menu/show.html.twig', [
+            'menu' => $menu,
+        ]);
+    }
+
     #[Route(path: '/menu/{id}', name: 'menu_show', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function show(Menu $menu): Response
     {

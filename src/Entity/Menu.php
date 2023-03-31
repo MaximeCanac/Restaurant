@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\MenuRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MenuRepository::class)]
@@ -23,6 +24,9 @@ class Menu
 
     #[ORM\ManyToMany(targetEntity: Dessert::class, inversedBy: 'desserts')]
     private Collection $desserts;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $dateCreation = null;
 
     public function __construct()
     {
@@ -104,6 +108,18 @@ class Menu
     public function removeDessert(dessert $dessert): self
     {
         $this->desserts->removeElement($dessert);
+
+        return $this;
+    }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
 
         return $this;
     }
