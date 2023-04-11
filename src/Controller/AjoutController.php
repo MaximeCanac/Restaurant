@@ -17,15 +17,9 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class AjoutController extends AbstractController
 {
-    private $entityManager;
-
-    public function __construct( EntityManagerInterface $entityManager)
-    {
-        
-        $this->entityManager = $entityManager;
-    }
+    
     #[Route('/menu/ajout', name: 'app_ajout')]
-    public function Ajout(Request $request): Response
+    public function Ajout(Request $request, EntityManagerInterface $entityManager): Response
     {
         $entree = new Entree();
         $plat = new Plat();
@@ -43,24 +37,24 @@ class AjoutController extends AbstractController
         
         if ($formEntree->isSubmitted() && $formEntree->isValid()) {
             
-            $this->entityManager->persist($entree);
-            $this->entityManager->flush();
+            $entityManager->persist($entree);
+            $entityManager->flush();
             $this->addFlash('success', 'L\'entrée a bien été ajoutée.');
             return $this->redirectToRoute('app_ajout');
         }
         
         if ($formPlat->isSubmitted() && $formPlat->isValid()) {
            
-            $this->entityManager->persist($plat);
-            $this->entityManager->flush();
+            $entityManager->persist($plat);
+            $entityManager->flush();
             $this->addFlash('success', 'Le plat a bien été ajouté.');
             return $this->redirectToRoute('app_ajout');
         }
         
         if ($formDessert->isSubmitted() && $formDessert->isValid()) {
             
-            $this->entityManager->persist($dessert);
-            $this->entityManager->flush();
+            $entityManager->persist($dessert);
+            $entityManager->flush();
             $this->addFlash('success', 'Le dessert a bien été ajouté.');
             return $this->redirectToRoute('app_ajout');
         }

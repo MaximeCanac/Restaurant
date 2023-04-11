@@ -34,7 +34,6 @@ class Menu
         $this->plats = new ArrayCollection();
         $this->desserts = new ArrayCollection();
     }
-
     public function getId(): ?int
     {
         return $this->id;

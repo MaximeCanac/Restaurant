@@ -13,15 +13,8 @@ use Doctrine\ORM\EntityManagerInterface;
 class MenuController extends AbstractController
 {
 
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
-
     #[Route(path: '/menu/creation', name: 'menu_creation')]
-    public function create(Request $request): Response
+    public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $menu = new Menu();
         $menu->setDateCreation(new \DateTime());
@@ -30,8 +23,8 @@ class MenuController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             
-            $this->entityManager->persist($menu);
-            $this->entityManager->flush();
+            $entityManager->persist($menu);
+            $entityManager->flush();
 
             return $this->redirectToRoute('menu_show', ['id' => $menu->getId()]);
         }
@@ -41,9 +34,9 @@ class MenuController extends AbstractController
         ]);
     }
     #[Route(path: '/menu/last', name: 'menu_last')]
-    public function last(): Response
+    public function last(EntityManagerInterface $entityManager): Response
     {
-        $menu = $this->entityManager->getRepository(Menu::class)->findOneBy([], ['dateCreation' => 'DESC']);
+        $menu = $entityManager->getRepository(Menu::class)->findOneBy([], ['dateCreation' => 'DESC']);
 
         return $this->render('menu/show.html.twig', [
             'menu' => $menu,
