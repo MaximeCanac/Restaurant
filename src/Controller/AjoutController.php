@@ -6,7 +6,6 @@ namespace App\Controller;
 use App\Entity\Dessert;
 use App\Entity\Entree;
 use App\Entity\Plat;
-use App\Form\AjoutMenuType;
 use App\Form\EntreeType;
 use App\Form\PlatType;
 use App\Form\DessertType;
@@ -31,9 +30,9 @@ class AjoutController extends AbstractController
         $entree = new Entree();
         $plat = new Plat();
         $dessert = new Dessert();
-        $ajout = new Ajout();
         
-        $form = $this->createForm(AjoutMenuType::class, $ajout);
+        
+        
         $formEntree = $this->createForm(EntreeType::class, $entree);
         $formPlat = $this->createForm(PlatType::class, $plat);
         $formDessert = $this->createForm(DessertType::class, $dessert);
@@ -67,7 +66,6 @@ class AjoutController extends AbstractController
         }
         
         return $this->render('ajout/index.html.twig', [
-            'form' => $form->createView(),
             'formEntree' => $formEntree->createView(),
             'formPlat' => $formPlat->createView(),
             'formDessert' => $formDessert->createView(),

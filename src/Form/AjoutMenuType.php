@@ -12,30 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AjoutMenuType extends AbstractType
-{
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('entrees', EntreeType::class, [
-                'label' => false,
-            ])
-            ->add('plats', PlatType::class, [
-                'label' => false,
-            ])
-            ->add('desserts', DessertType::class, [
-                'label' => false,
-            ]);
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => Menu::class,
-        ]);
-    }
-}
-
 class EntreeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
