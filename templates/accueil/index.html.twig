@@ -4,71 +4,70 @@
 
 {% block body %}
 
-
-
-<center>
-<div class="example-wrapper" >
-
-
-
-
- 
-
-
-
-
-<div id="carouselExampleIndicators" class="carousel slide" class="img-fluid" class="right" >
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{ asset('images/exterieur.jpg') }}" class="d-block w-100 mx-auto" alt="image du café">
+      </div>
+      <div class="carousel-item">
+        <img src="{{ asset('images/interieur.jpg') }}" class="d-block w-100 mx-auto" alt="image de l'intérieur">
+      </div>
+      <div class="carousel-item">
+        <img src="{{ asset('images/chambre.jpg') }}" class="d-block w-100 mx-auto" alt="image de la chambre">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-    <img src="{{asset('images/exterieur.jpg') }}" class="d-block w-100  "  alt="image du cafe ">
+
+  <div class="row mt-4">
+    <div class="col-lg-6 col-md-12">
+      <h5>Adresse :</h5>
+      <p>8 Pl. de l'Hôtel de ville,</p>
+      <p>81260 Brassac</p>
     </div>
-    <div class="carousel-item">
-      <img src="{{asset('images/interieur.jpg') }}" class="d-block w-100" alt="image de interieur">
-    </div>
-    <div class="carousel-item">
-      <img src="{{asset('images/chambre.jpg') }}" class="d-block w-100" alt="image de la chambre">
+    <div class="col-lg-6 col-md-12">
+      <h5>Téléphone :</h5>
+      <p>05 63 74 00 31</p>
+      <h5>Services disponibles :</h5>
+      <p>Repas sur place · Vente à emporter</p>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+
+  <div class="row mt-4">
+    <div class="col-lg-6 col-md-12">
+      <h5>Horaires :</h5>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">Lundi</th>
+            <td>Fermé</td>
+          </tr>
+          <tr>
+            <th scope="row">Mardi - Mercredi - Jeudi</th>
+            <td>12:00–14:00</td>
+          </tr>
+          <tr>
+            <th scope="row">Vendredi - Samedi</th>
+            <td>12:00–14:00 et 19:30–21:00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-
-<p> Adresse : 8 Pl. de l'Hôtel de ville, 81260 Brassac </p>
-
-<p>Téléphone : 05 63 74 00 31 </p>
-
-<p> Services disponibles: Repas sur place · Vente à emporter </p>
-
-<br> <br>
-<p style="border: 5px solid black; padding: 1px; height: 240px; width: 300px;"
-<h5> Horaires: </h5>
-<br>
-<strong> Lundi:</strong>	 Fermé 
-<br>
-<strong>Mardi:</strong>	09:00–15:00
-<br>
-<strong>Mercredi:</strong>	09:00–15:00
-<br>
-<strong>Jeudi:</strong>	09:00–15:00
-<br>
-<strong>Vendredi:</strong>	09:00–23:00
-<br>
-<strong>Samedi:</strong>	09:00–23:00
-<br>
-<strong>Dimanche:</strong>	09:00–15:00
-</p>
-</span> 
-
 {% endblock %}
-

@@ -29,5 +29,6 @@
     display: flex;
   }
 
-  .right carousel-control {right : 50%;}
+.carousel-control {right : 10%;
+  background-color: #8c8c8c;}
 
