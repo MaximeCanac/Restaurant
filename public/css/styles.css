@@ -32,3 +32,7 @@
 .carousel-control {right : 10%;
   background-color: #8c8c8c;}
 
+  .btn {
+    background-color: red;
+    color: white;
+}
