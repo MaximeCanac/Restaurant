@@ -29,5 +29,11 @@
     display: flex;
   }
 
-.carousel-control {right : 10%;
-  background-color: #8c8c8c;}
+.carousel-control {
+  right : 10%;
+  background-color: #8c8c8c;
+}
+
+.btn{
+  background: #fff;
+}
