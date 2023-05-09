@@ -1,0 +1,37 @@
+{# templates/menu/ajout.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'un menu{% endblock %}
+
+{% block body %}
+    <h1>Ajout d'un menu</h1>
+
+    {{ form_start(formEntree) }}
+
+    {{ form_widget(formEntree.nom) }}
+    {{ form_row(formEntree.ingredient) }}
+    {{ form_row(formEntree.prix) }}
+
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+
+    {{ form_end(formEntree) }}
+    {{ form_start(formPlat) }}
+
+    {{ form_widget(formPlat.nom) }}
+    {{ form_row(formPlat.ingredient) }}
+    {{ form_row(formPlat.prix) }}
+
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+
+    {{ form_end(formPlat) }}
+    {{ form_start(formDessert) }}
+
+    {{ form_widget(formDessert.nom) }}
+    {{ form_row(formDessert.ingredient) }}
+    {{ form_row(formDessert.prix) }}
+
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+
+    {{ form_end(formDessert) }}
+{% endblock %}

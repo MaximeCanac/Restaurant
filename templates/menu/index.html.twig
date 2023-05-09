@@ -1,0 +1,33 @@
+{# templates/menu/new.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Création d'un menu</h1>
+
+    {{ form_start(form) }}
+
+    <div class="form-group">
+        {{ form_label(form.entrees) }}
+        {{ form_widget(form.entrees) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.plats) }}
+        {{ form_widget(form.plats) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.desserts) }}
+        {{ form_widget(form.desserts) }}
+    </div>
+
+    {{ form_row(form._token) }}
+
+    <button type="submit" class="btn btn-primary">Créer</button>
+
+    {{ form_end(form) }}
+
+{% endblock %}
+
+

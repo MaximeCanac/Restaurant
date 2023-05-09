@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu{% endblock %}
+
+{% block body %}
+    <h1>Menu</h1>
+    <hr>
+
+    <h2>Entrées</h2>
+    <ul>
+        {% for entree in menu.entrees %}
+            <li>{{ entree.nom }} </li>
+        {% else %}
+            <p>Aucune entrée disponible pour le moment.</p>
+        {% endfor %}
+    </ul>
+
+    <h2>Plats</h2>
+    <ul>
+        {% for plat in menu.plats %}
+            <li>{{ plat.nom }} </li>
+        {% else %}
+            <p>Aucun plat disponible pour le moment.</p>
+        {% endfor %}
+    </ul>
+
+    <h2>Desserts</h2>
+    <ul>
+        {% for dessert in menu.desserts %}
+            <li>{{ dessert.nom }} </li>
+        {% else %}
+            <p>Aucun dessert disponible pour le moment.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}
