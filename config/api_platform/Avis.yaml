@@ -1,0 +1,14 @@
+# config/api_platform/Avis.yaml
+
+App\Entity\Avis:
+    collectionOperations:
+        get:
+            normalization_context:
+                groups: ['read']
+        post: ~
+    itemOperations:
+        get:
+            normalization_context:
+                groups: ['read']
+        put: ~
+        delete: ~
