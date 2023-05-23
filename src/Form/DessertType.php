@@ -16,15 +16,15 @@ class DessertType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class, [
-                'label' => 'Nom de l\'entrée',
+                'label' => 'Nom du dessert',
                 'required' => true,
             ])
             ->add('ingredient', TextType::class, [
-                'label' => 'Ingrédients de l\'entrée',
+                'label' => 'Ingrédient du dessert',
                 'required' => true,
             ])
             ->add('prix', NumberType::class, [
-                'label' => 'Prix de l\'entrée',
+                'label' => 'Prix du dessert',
                 'required' => true,
                 'scale' => 2,
                 'attr' => [

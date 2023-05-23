@@ -1,37 +1,76 @@
-{# templates/menu/ajout.html.twig #}
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Ajout d'un menu{% endblock %}
 
 {% block body %}
-    <h1>Ajout d'un menu</h1>
+    <div class="container">
+        <h1 class="mb-4">Ajouts de plats</h1>
 
-    {{ form_start(formEntree) }}
+        <div class="row">
+            <div class="col-md-6">
+            <h2>Ajout d'une entrée</h2>
+                {{ form_start(formEntree) }}
 
-    {{ form_widget(formEntree.nom) }}
-    {{ form_row(formEntree.ingredient) }}
-    {{ form_row(formEntree.prix) }}
+                <div class="form-group">
+                    {{ form_row(formEntree.nom, {'attr': {'class': 'form-control'}}) }}
+                </div>
 
-    <button type="submit" class="btn btn-primary">Ajouter</button>
+                <div class="form-group">
+                    {{ form_row(formEntree.ingredient, {'attr': {'class': 'form-control'}}) }}
+                </div>
 
-    {{ form_end(formEntree) }}
-    {{ form_start(formPlat) }}
+                <div class="form-group">
+                    {{ form_row(formEntree.prix, {'attr': {'class': 'form-control'}}) }}
+                </div>
 
-    {{ form_widget(formPlat.nom) }}
-    {{ form_row(formPlat.ingredient) }}
-    {{ form_row(formPlat.prix) }}
+                <button type="submit" class="btn btn-success">Ajouter</button>
 
-    <button type="submit" class="btn btn-primary">Ajouter</button>
+                {{ form_end(formEntree) }}
+            </div>
 
-    {{ form_end(formPlat) }}
-    {{ form_start(formDessert) }}
+            <div class="col-md-6">
+            <h2>Ajout d'un plat</h2>
+                {{ form_start(formPlat) }}
 
-    {{ form_widget(formDessert.nom) }}
-    {{ form_row(formDessert.ingredient) }}
-    {{ form_row(formDessert.prix) }}
+                <div class="form-group">
+                    {{ form_row(formPlat.nom, {'attr': {'class': 'form-control'}}) }}
+                </div>
 
-    <button type="submit" class="btn btn-primary">Ajouter</button>
+                <div class="form-group">
+                    {{ form_row(formPlat.ingredient, {'attr': {'class': 'form-control'}}) }}
+                </div>
 
-    {{ form_end(formDessert) }}
+                <div class="form-group">
+                    {{ form_row(formPlat.prix, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <button type="submit" class="btn btn-success">Ajouter</button>
+
+                {{ form_end(formPlat) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+            <h2>Ajout d'un dessert</h2>
+                {{ form_start(formDessert) }}
+
+                <div class="form-group">
+                    {{ form_row(formDessert.nom, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_row(formDessert.ingredient, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_row(formDessert.prix, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <button type="submit" class="btn btn-success">Ajouter</button>
+
+                {{ form_end(formDessert) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AvisController extends AbstractController
 {
-    #[Route('/avis', name: 'avis')]
+    #[Route('/avis', name: 'app_avis')]
     public function index(AvisRepository $avisRepository): Response
     {
         $avis = $avisRepository->findAll();

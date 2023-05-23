@@ -20,7 +20,7 @@ class EntreeType extends AbstractType
                 'required' => true,
             ])
             ->add('ingredient', TextType::class, [
-                'label' => 'Ingrédients de l\'entrée',
+                'label' => 'Ingrédient de l\'entrée',
                 'required' => true,
             ])
             ->add('prix', NumberType::class, [

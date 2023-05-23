@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class MenuController extends AbstractController
 {
 
-    #[Route(path: '/menu/creation', name: 'menu_creation')]
+    #[Route(path: '/menu/creation', name: 'app_menu_creation')]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $menu = new Menu();
@@ -26,14 +26,14 @@ class MenuController extends AbstractController
             $entityManager->persist($menu);
             $entityManager->flush();
 
-            return $this->redirectToRoute('menu_show', ['id' => $menu->getId()]);
+            return $this->redirectToRoute('app_menu_show', ['id' => $menu->getId()]);
         }
 
         return $this->render('menu/index.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-    #[Route(path: '/menu/last', name: 'menu_last')]
+    #[Route(path: '/menu/last', name: 'app_menu_last')]
     public function last(EntityManagerInterface $entityManager): Response
     {
         $menu = $entityManager->getRepository(Menu::class)->findOneBy([], ['dateCreation' => 'DESC']);
@@ -43,7 +43,7 @@ class MenuController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/menu/{id}', name: 'menu_show', methods: ['GET'], requirements: ['id' => '\d+'])]
+    #[Route(path: '/menu/{id}', name: 'app_menu_show', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function show(Menu $menu): Response
     {
         return $this->render('menu/show.html.twig', [
