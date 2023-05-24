@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class MenuController extends AbstractController
 {
+    
 
     #[Route(path: '/menu/creation', name: 'app_menu_creation')]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
