@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+
+    <p class="lead">Publié le {{ post.createdAt|date('d/m/Y') }} par {{ post.author }}</p>
+  
+    {% if post.image %}
+        <img src="{{ asset('uploads/posts/' ~ post.image) }}" class="img-fluid mb-3" alt="{{ post.title }}">
+    {% endif %}
+
+    <p>{{ post.content|raw }}</p>
+{% endblock %}

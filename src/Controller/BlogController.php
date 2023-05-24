@@ -41,11 +41,11 @@ class BlogController extends AbstractController
             'post' => $post,
         ]);
     }
-
+ 
     /**
      * @Route("/blog/new", name="blog_new", methods={"GET", "POST"})
      */
-    public function new(Request $request): Response
+    public function nouveau(Request $request): Response
     {
         $post = new Post();
         $post->setAutheur($this->getUser()->getUserIdentifier());
@@ -75,7 +75,7 @@ class BlogController extends AbstractController
             $this->entityManager->persist($post);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('blog_index');
+            return $this->redirectToRoute('blog.index');
         }
 
         return $this->render('blog/new.html.twig', [
@@ -83,3 +83,4 @@ class BlogController extends AbstractController
         ]);
     }
 }
+
