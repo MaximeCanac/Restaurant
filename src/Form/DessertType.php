@@ -21,6 +21,7 @@ class DessertType extends AbstractType
     {
         $this->entityManager = $entityManager;
     }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -51,7 +52,7 @@ class DessertType extends AbstractType
             'data_class' => Dessert::class,
         ]);
     }
-    
+
     public function validateUniqueDessert($nom, ExecutionContextInterface $context)
     {
         $existingDessert = $this->entityManager->getRepository(Dessert::class)->findOneBy(['nom' => $nom]);
