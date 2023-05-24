@@ -20,23 +20,20 @@ class MenuType extends AbstractType
             ->add('entrees', EntityType::class, [
                 'class' => Entree::class,
                 'multiple' => true,
-                'expanded' => true,
+                'expanded' => false,
                 'label' => 'Choix des entrées'
             ])
             ->add('plats', EntityType::class, [
                 'class' => Plat::class,
                 'multiple' => true,
-                'expanded' => true,
+                'expanded' => false,
                 'label' => 'Choix des plats'
             ])
             ->add('desserts', EntityType::class, [
                 'class' => Dessert::class,
                 'multiple' => true,
-                'expanded' => true,
+                'expanded' => false,
                 'label' => 'Choix des desserts'
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Créer le menu'
             ]);
     }
 
