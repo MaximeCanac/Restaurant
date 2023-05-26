@@ -32,7 +32,7 @@ form.addEventListener('submit', (event) => {
   });
 });
   
-  // Faites quelque chose avec les données du formulaire (par exemple, les envoyer à un serveur)
+  
 });
 
 const articles = [
