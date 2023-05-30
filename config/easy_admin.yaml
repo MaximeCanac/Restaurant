@@ -1,4 +1,4 @@
 # config/packages/easy_admin.yaml
 easy_admin:
-  language: fr
-  
+    language: fr
+
