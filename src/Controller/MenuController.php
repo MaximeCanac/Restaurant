@@ -2,6 +2,7 @@
 //src/Controller/MenuController.php
 namespace App\Controller;
 
+use Dompdf\Dompdf;
 use App\Entity\Menu;
 use App\Form\MenuType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,6 +58,39 @@ class MenuController extends AbstractController
         // Affiche le menu spécifié dans le template menu/show.html.twig
         return $this->render('menu/show.html.twig', [
             'menu' => $menu,
+        ]);
+    }
+
+    #[Route(path: '/menu/generate-pdf', name: 'app_menu_generate-pdf')]
+    public function generatePdf(EntityManagerInterface $entityManager): Response
+    {
+        // Récupérer le contenu du menu à partir de votre source de données
+        $menu = $entityManager->getRepository(Menu::class)->findOneBy([], ['dateCreation' => 'DESC']); // Exemple avec une entité Menu
+
+        // Rendre le template Twig pour le contenu du menu
+        $html = $this->renderView('menu/menu_pdf.html.twig', [
+            'menu' => $menu,
+        ]);
+
+        // Créer une instance de Dompdf
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+
+        // (Facultatif) Configurer des options supplémentaires pour Dompdf
+
+        // Rendre le HTML en PDF
+        $dompdf->render();
+
+        // Générer le nom du fichier PDF
+        $filename = 'menu.pdf';
+
+        // Récupérer le contenu PDF généré
+        $output = $dompdf->output();
+
+        // Envoyer le fichier PDF en réponse
+        return new Response($output, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="'.$filename.'"',
         ]);
     }
 }
