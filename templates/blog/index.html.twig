@@ -13,30 +13,40 @@
     <script src="{{ asset('public/javascript/blog.js') }}"></script>
 {% endblock %}
 
-<form id="myForm">
-  <label for="name">Note :</label>
-  <input type="text" id="name" name="note" required>
+<div class="example-wrapper">
 
-  <label for="contenu">contenu :</label>
-  <textarea id="contenu" name="contenu" required></textarea>
+    <form id="myForm">
+        <div class="mb-3">
+            <label for="name" class="form-label">Titre :</label>
+            <input type="text" id="name" name="titre" class="form-control" required>
+        </div>
 
-  <label for="image">image :</label>
-  <textarea id="image" name="image" required></textarea>
+        <div class="mb-3">
+            <label for="contenu" class="form-label">Contenu :</label>
+            <textarea id="contenu" name="contenu" class="form-control" required></textarea>
+        </div>
 
+        <div class="mb-3">
+            <label for="image" class="form-label">Image :</label>
+            <textarea id="image" name="image" class="form-control"></textarea>
+            <small class="form-text text-muted"> </small>
+        </div>
 
-    <label for="date">date :</label>
-  <textarea id="date" name="date" required></textarea>
+        <div class="mb-3">
+            <label for="date" class="form-label">Date :</label>
+            <textarea id="date" name="date" class="form-control" required></textarea>
+        </div>
 
-    <label for="autheur">autheur :</label>
-  <textarea id="autheur" name="autheur" required></textarea>
+        <div class="mb-3">
+            <label for="autheur" class="form-label">Auteur :</label>
+            <textarea id="autheur" name="autheur" class="form-control" required></textarea>
+        </div>
 
-
-  <button type="submit">Envoyer</button>
-</form>
-
-
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+    </form>
+    
+</div>
 
 <div id="articles"></div>
-
 
 {% endblock %}

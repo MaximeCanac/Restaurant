@@ -82,5 +82,28 @@ class BlogController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-}
+    
+    /**
+     * @Route("/my-form", name="save_form_data", methods={"POST"})
+     */
+    public function saveFormData(Request $request): Response
+    {
+        // Récupérer les données du formulaire
+        $name = $request->request->get('name');
+        $message = $request->request->get('message');
 
+        // Créer une nouvelle instance de l'entité Post
+        $post = new Post();
+
+        $post->setTitre($titre);
+        $post->setContenu($contenu);
+        
+
+        // Enregistrer l'entité dans la base de données
+        $this->entityManager->persist($post);
+        $this->entityManager->flush();
+
+        // Répondre avec une réponse JSON pour la redirection
+        return $this->json(['success' => true]);
+    }
+}
