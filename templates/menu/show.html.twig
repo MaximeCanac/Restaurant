@@ -48,7 +48,9 @@
             </div>
         </div>
     </div>
- <a href="{{ path('app_menu_generate-pdf') }}">Générer PDF</a>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_menu_generate-pdf') }}" class="btn btn-success">Générer PDF</a>
+    {% endif %}
 
 
 {% endblock %}
