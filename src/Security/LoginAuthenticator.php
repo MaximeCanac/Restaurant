@@ -14,6 +14,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Bundle\SecurityBundle\Security as SymfonySecurity;
 
 class LoginAuthenticator extends AbstractLoginFormAuthenticator
 {
@@ -29,8 +30,11 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     {
         $username = $request->request->get('username', '');
 
-        $request->getSession()->set(Security::LAST_USERNAME, $username);
+        // Je sauvegarde le nom d'utilisateur dans la session pour pouvoir l'utiliser plus tard
+        $request->getSession()->set(SymfonySecurity::LAST_USERNAME, $username);
 
+        // Je retourne un objet Passport qui contient les informations d'identification de l'utilisateur
+        // ainsi que d'autres badges, comme le jeton CSRF
         return new Passport(
             new UserBadge($username),
             new PasswordCredentials($request->request->get('password', '')),
@@ -42,17 +46,23 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        // Si un chemin cible a été enregistré dans la session, je redirige l'utilisateur vers ce chemin
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
-         return new RedirectResponse($this->urlGenerator->generate('app_accueil'));
+        // Sinon, je redirige l'utilisateur vers la page d'accueil de l'application
+        // Vous pouvez modifier cette redirection selon vos besoins
+        return new RedirectResponse($this->urlGenerator->generate('app_accueil'));
+
+        // À noter : la ligne ci-dessous lance une exception par défaut pour indiquer qu'une redirection valide doit être fournie
+        // Vous pouvez la supprimer ou la remplacer par une logique appropriée si nécessaire
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl(Request $request): string
     {
+        // Je génère l'URL de la page de connexion
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
 }

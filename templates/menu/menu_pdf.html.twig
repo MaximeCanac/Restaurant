@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .menu {
+            text-align: center;
+        }
+
+        .menu-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .menu-section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .menu-item {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <h1 class="menu-title">Menu</h1>
+
+        <div class="menu-section">
+            <h2 class="menu-section-title">Entrées :</h2>
+            <ul class="menu-items">
+                {% for entree in menu.entrees %}
+                    <li class="menu-item">{{ entree.nom }}</li>
+                {% else %}
+                    <li class="menu-item">Aucune entrée disponible pour le moment.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="menu-section">
+            <h2 class="menu-section-title">Plats :</h2>
+            <ul class="menu-items">
+                {% for plat in menu.plats %}
+                    <li class="menu-item">{{ plat.nom }}</li>
+                {% else %}
+                    <li class="menu-item">Aucun plat disponible pour le moment.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="menu-section">
+            <h2 class="menu-section-title">Desserts :</h2>
+            <ul class="menu-items">
+                {% for dessert in menu.desserts %}
+                    <li class="menu-item">{{ dessert.nom }}</li>
+                {% else %}
+                    <li class="menu-item">Aucun dessert disponible pour le moment.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
