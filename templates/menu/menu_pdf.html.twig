@@ -8,6 +8,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            font-family: "Goudy Bookletter 1911", serif;
         }
 
         .menu {
@@ -15,30 +16,39 @@
         }
 
         .menu-title {
-            font-size: 24px;
+            font-size: 30px;
             font-weight: bold;
             margin-bottom: 20px;
         }
 
         .menu-section-title {
-            font-size: 18px;
+            font-size: 26px;
             font-weight: bold;
             margin-top: 20px;
             margin-bottom: 10px;
         }
 
         .menu-item {
-            font-size: 14px;
+            font-size: 20px;
             margin-bottom: 5px;
+            text-align: left;
         }
+        ul.menu-items {
+  list-style-type: none;
+}
+li.menu-item:before {
+  content: '* ';
+}
     </style>
 </head>
 <body>
     <div class="menu">
-        <h1 class="menu-title">Menu</h1>
+        <h1 class="menu-title">Menu du jour</h1>
+        <p>Menu (entrée + plat + dessert): 20.00 €</p>
+        <p>Formule (entrée + plat ou plat + dessert): 17.00 €</p>
 
         <div class="menu-section">
-            <h2 class="menu-section-title">Entrées :</h2>
+            <h2 class="menu-section-title">ENTREE :</h2>
             <ul class="menu-items">
                 {% for entree in menu.entrees %}
                     <li class="menu-item">{{ entree.nom }}</li>
@@ -49,7 +59,7 @@
         </div>
 
         <div class="menu-section">
-            <h2 class="menu-section-title">Plats :</h2>
+            <h2 class="menu-section-title">PLAT :</h2>
             <ul class="menu-items">
                 {% for plat in menu.plats %}
                     <li class="menu-item">{{ plat.nom }}</li>
@@ -60,7 +70,7 @@
         </div>
 
         <div class="menu-section">
-            <h2 class="menu-section-title">Desserts :</h2>
+            <h2 class="menu-section-title">DESSERT :</h2>
             <ul class="menu-items">
                 {% for dessert in menu.desserts %}
                     <li class="menu-item">{{ dessert.nom }}</li>
