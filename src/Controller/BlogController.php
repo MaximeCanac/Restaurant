@@ -35,6 +35,7 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/{id}", name="blog_show", requirements={"id": "\d+"})
      */
+    #[Route(path: '/blog/{id}', name: 'blog_show', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function show(Post $post): Response
     {
         return $this->render('blog/show.html.twig', [
@@ -42,9 +43,8 @@ class BlogController extends AbstractController
         ]);
     }
  
-    /**
-     * @Route("/blog/new", name="blog_new", methods={"GET", "POST"})
-     */
+    
+    #[Route(path: '/blog/{id}', name: 'blog_new', methods: ['GET','GET'], requirements: ['id' => '\d+'])]
     public function nouveau(Request $request): Response
     {
         $post = new Post();
