@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Hotel{% endblock %}
+
+{% block body %}
+
+
+<div class="d-flex justify-content-center">
+  <img src="{{ asset('images/hotel.jpg') }}" class="img-fluid" alt="Chambre d'hotel">
+</div>
+
+
+
+<h3>HORAIRES</h3>
+ <p>Du Mardi au Dimanche, de 12h00 à 14h00
+
+Les Vendredi et Samedi soir, de 19h30 à 21h00
+
+ 
+Possibilité de privatiser le restaurant, sur réservation, pour un autre soir de la semaine ou le week end</p>
+
+
+  <div class="row mt-6">
+    <div class="col-lg-6 col-md-12">
+      <h5> Bienvenue au Café de Paris :</h5>
+      <p>Notre établissement dispose de 7 chambres,  réparties sur les deux étages supérieurs, 
+chaque chambre est équipée d'une salle de bains avec wc et douche ou baignoire, téléviseur et accès wifi.</p>
+      
+    </div>
+    
+
+<h1 class="mt-1">Tarifs du 1er octobre au 31 avril</h1>
+<table class="table mt-1">
+    <thead>
+        <tr>
+            <th>Tarifs</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Chambre simple (lit en 90)</td>
+            <td>€ 52.20</td>
+        </tr>
+        <tr>
+            <td>Chambre double (lit en 140)</td>
+            <td>€ 62.64</td>
+        </tr>
+        <tr>
+            <td>Chambre familiale n°9 (1 lit en 140 + 1 convertible 2 places)</td>
+            <td>€ 71.54</td>
+        </tr>
+        <tr>
+            <td>Petit déjeuner</td>
+            <td>€ 07.00</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h1 class="mt-1">Tarifs du 1er mai au 30 septembre</h1>
+<table class="table mt-1">
+    <thead>
+        <tr>
+            <th>Tarifs</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Chambre simple </td>
+            <td>€ 62.20</td>
+        </tr>
+        <tr>
+            <td>Chambre double</td>
+            <td>€ 73.08</td>
+        </tr>
+        <tr>
+            <td>Chambre familiale</td>
+            <td>€ 81.76</td>
+        </tr>
+        <tr>
+            <td>Petit déjeuner</td>
+            <td>€ 07.00</td>
+        </tr>
+
+ </tbody>
+
+</table>
+<h5>Soirée étape à l'année : 72€50</h5>
+      <p>Dîner pensionnaire + nuit + petit déjeuner pour 1 personne</p>
+
+
+{% endblock %}
