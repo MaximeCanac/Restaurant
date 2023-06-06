@@ -13,7 +13,6 @@
             <thead>
                 <tr>
                     
-                    <th>Auteur</th>
                     <th>Note</th>
                     <th>Commentaire</th>
                     <th>Date</th>
@@ -23,7 +22,6 @@
                 {% for avi in avis %}
                     <tr>
                         
-                        <td>{{ avi.auteur }}</td>
                         <td>{{ avi.note }}</td>
                         <td>{{ avi.commentaire }}</td>
                         <td>{{ avi.date|date('Y-m-d') }}</td>
