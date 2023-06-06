@@ -3,13 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Post;
-use App\Entity\User;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use App\Form\PostType;
+use App\Repository\PostRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
 
 class BlogController extends AbstractController
 {
@@ -19,44 +20,27 @@ class BlogController extends AbstractController
     {
         $this->entityManager = $entityManager;
     }
-
-    /**
-     * @Route("/blog", name="blog_index")
-     */
-    public function index(): Response
+    #[Route('/blog', name: 'app_blog')]
+    public function index(PostRepository $postRepository): Response
     {
-        $posts = $this->entityManager->getRepository(Post::class)->findAll();
-
+        $post = $postRepository->findAll();
         return $this->render('blog/index.html.twig', [
-            'posts' => $posts,
-        ]);
-    }
-
-    /**
-     * @Route("/blog/{id}", name="blog_show", requirements={"id": "\d+"})
-     */
-    #[Route(path: '/blog/{id}', name: 'blog_show', methods: ['GET'], requirements: ['id' => '\d+'])]
-    public function show(Post $post): Response
-    {
-        return $this->render('blog/show.html.twig', [
             'post' => $post,
         ]);
     }
- 
-    
-    #[Route(path: '/blog/{id}', name: 'blog_new', methods: ['GET','GET'], requirements: ['id' => '\d+'])]
-    public function nouveau(Request $request): Response
+
+    /**
+     * @Route("/blog/new", name="blog_new", methods={"GET", "POST"})
+     */
+    public function new(Request $request): Response
     {
         $post = new Post();
-        $post->setAutheur($this->getUser()->getUserIdentifier());
-        $post->setDate(new \DateTime());
 
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('image')->getData();
-
             if ($imageFile) {
                 $newFilename = uniqid().'.'.$imageFile->guessExtension();
 
@@ -66,7 +50,7 @@ class BlogController extends AbstractController
                         $newFilename
                     );
                 } catch (FileException $e) {
-                    // Handle exception
+                    // Gérer l'exception
                 }
 
                 $post->setImage($newFilename);
@@ -75,35 +59,11 @@ class BlogController extends AbstractController
             $this->entityManager->persist($post);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('blog.index');
+            return $this->redirectToRoute('blog_new');
         }
 
         return $this->render('blog/new.html.twig', [
             'form' => $form->createView(),
         ]);
-    }
-    
-    /**
-     * @Route("/my-form", name="save_form_data", methods={"POST"})
-     */
-    public function saveFormData(Request $request): Response
-    {
-        // Récupérer les données du formulaire
-        $titre = $request->request->get('titre');
-        $contenu = $request->request->get('contenu');
-
-        // Créer une nouvelle instance de l'entité Post
-        $post = new Post();
-
-        $post->setTitre($titre);
-        $post->setContenu($contenu);
-        
-
-        // Enregistrer l'entité dans la base de données
-        $this->entityManager->persist($post);
-        $this->entityManager->flush();
-
-        // Répondre avec une réponse JSON pour la redirection
-        return $this->json(['success' => true]);
     }
 }

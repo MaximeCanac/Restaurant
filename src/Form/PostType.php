@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -16,10 +17,10 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, [
+            ->add('titre', TextType::class, [
                 'label' => 'Titre',
             ])
-            ->add('content', TextareaType::class, [
+            ->add('contenu', TextareaType::class, [
                 'label' => 'Contenu',
             ])
             ->add('image', FileType::class, [
@@ -35,14 +36,14 @@ class PostType extends AbstractType
                             'image/gif',
                         ],
                         'mimeTypesMessage' => 'Veuillez uploader une image valide (JPEG, PNG ou GIF)',
-                            ])
-                                ],
+                    ])
+                ],
             ])
             ->add('date', DateType::class, [
                 'label' => 'Date',
             ])
-            ->add('auteur', AuteurType::class, [
-                'label' => 'auteur',
+            ->add('autheur', TextType::class, [
+                'label' => 'Autheur',
             ])
         ;
     }
@@ -54,4 +55,3 @@ class PostType extends AbstractType
         ]);
     }
 }
-

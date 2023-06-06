@@ -2,16 +2,17 @@
 
 {% block title %}Blog{% endblock %}
 
-<h1>Mon Blog</h1>
+{% block body %}
+    <h1>Mon Blog</h1>
     
     {% for post in posts %}
         <article>
             <h2>{{ post.titre }}</h2>
             <p>{{ post.contenu }}</p>
-            <p>Publié par {{ post.autheur }} le {{ post.date|date('d/m/Y') }}</p>
+            <p>Publié par {{ post.auteur }} le {{ post.date|date('d/m/Y') }}</p>
         </article>
         <hr>
     {% endfor %}
     
-    <a class="btn btn-primary" href="{{ asset('blog_new') }}">Nouveau Post</a>
+    <a class="btn btn-primary" href="{{ path('blog_new') }}">Nouveau Post</a>
 {% endblock %}
