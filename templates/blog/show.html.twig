@@ -6,7 +6,7 @@
     <div class="container">
         <div class="card my-4">
             {% if post.image %}
-                <img src="{{ asset('uploads/' ~ post.image) }}" class="card-img-top" alt="Image du post">
+                <img src="{{ asset('images/blog_directory/' ~ post.image) }}" class="card-img-top" alt="Image du post">
             {% endif %}
             <div class="card-body">
                 <h2 class="card-title">{{ post.titre }}</h2>
