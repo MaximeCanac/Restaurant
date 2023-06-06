@@ -35,8 +35,14 @@ class PostType extends AbstractType
                             'image/gif',
                         ],
                         'mimeTypesMessage' => 'Veuillez uploader une image valide (JPEG, PNG ou GIF)',
-                    ])
-                ],
+                            ])
+                                ],
+            ])
+            ->add('date', DateType::class, [
+                'label' => 'Date',
+            ])
+            ->add('auteur', AuteurType::class, [
+                'label' => 'auteur',
             ])
         ;
     }
