@@ -1,18 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Blog{% endblock %}
+{% block title %}Liste des posts{% endblock %}
 
 {% block body %}
-    <h1>Mon Blog</h1>
-    
-    {% for post in posts %}
-        <article>
-            <h2>{{ post.titre }}</h2>
-            <p>{{ post.contenu }}</p>
-            <p>Publié par {{ post.auteur }} le {{ post.date|date('d/m/Y') }}</p>
-        </article>
-        <hr>
-    {% endfor %}
-    
-    <a class="btn btn-primary" href="{{ path('blog_new') }}">Nouveau Post</a>
+    <div class="container">
+        <h1 class="mt-4">Liste des posts</h1>
+
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('blog_show', {'id': post.id}) }}">{{ post.titre }}</a>
+                            </h5>
+                            <p class="card-text">{{ post.contenu|slice(0, 100) ~ '...' }}</p>
+                            <p class="card-text"><strong>Auteur :</strong> {{ post.autheur }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

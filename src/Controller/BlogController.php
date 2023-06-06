@@ -20,12 +20,12 @@ class BlogController extends AbstractController
     {
         $this->entityManager = $entityManager;
     }
-    #[Route('/blog', name: 'app_blog')]
+    #[Route('/blog', name: 'blog')]
     public function index(PostRepository $postRepository): Response
     {
-        $post = $postRepository->findAll();
+        $posts = $postRepository->findAll();
         return $this->render('blog/index.html.twig', [
-            'post' => $post,
+            'posts' => $posts,
         ]);
     }
 
@@ -59,11 +59,21 @@ class BlogController extends AbstractController
             $this->entityManager->persist($post);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('blog_new');
+            return $this->redirectToRoute('blog_show', ['id' => $post->getId()]);
         }
 
         return $this->render('blog/new.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/blog/{id}", name="blog_show", methods={"GET"})
+     */
+    public function show(Post $post): Response
+    {
+        return $this->render('blog/show.html.twig', [
+            'post' => $post,
         ]);
     }
 }

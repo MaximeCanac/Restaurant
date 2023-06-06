@@ -1,13 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block content %}
-    <h1>{{ post.title }}</h1>
+{% block title %}Détails du post{% endblock %}
 
-    <p class="lead">Publié le {{ post.createdAt|date('d/m/Y') }} par {{ post.author }}</p>
-  
-    {% if post.image %}
-        <img src="{{ asset('uploads/posts/' ~ post.image) }}" class="img-fluid mb-3" alt="{{ post.title }}">
-    {% endif %}
-
-    <p>{{ post.content|raw }}</p>
+{% block body %}
+    <div class="container">
+        <div class="card my-4">
+            {% if post.image %}
+                <img src="{{ asset('uploads/' ~ post.image) }}" class="card-img-top" alt="Image du post">
+            {% endif %}
+            <div class="card-body">
+                <h2 class="card-title">{{ post.titre }}</h2>
+                <p class="card-text">{{ post.contenu }}</p>
+                <p class="card-text">
+                    <strong>Date :</strong> {{ post.date|date('d/m/Y') }}<br>
+                    <strong>Auteur :</strong> {{ post.autheur }}
+                </p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
