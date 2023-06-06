@@ -1,27 +1,25 @@
-// créer un formulaire
+/* créer un formulaire
 const form = document.getElementById('myForm');
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
 
-  const name = document.getElementById('name').value;
-  const message = document.getElementById('message').value;
 
 
 // enregister le formulaire dans la base de donnée post
 
-  const form = document.getElementById('myForm');
-
+  
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  const name = document.getElementById('name').value;
-  const message = document.getElementById('message').value;
+  const titre = document.getElementById('titre').value;
+  const contenu = document.getElementById('contenu').value;
+  const titre = document.getElementById('titre').value;
+  const contenu = document.getElementById('contenu').value;
+  const contenu = document.getElementById('contenu').value;
 
   // Envoie une requête POST à la route correspondante
   fetch('/my-form', {
     method: 'POST',
-    body: JSON.stringify({ name, email, message })
+    body: JSON.stringify({ titre, email, contenu })
   })
   .then(response => {
     // Rediriger l'utilisateur vers une page de confirmation
@@ -33,7 +31,7 @@ form.addEventListener('submit', (event) => {
 });
   
   
-});
+
 
 const articles = [
     {

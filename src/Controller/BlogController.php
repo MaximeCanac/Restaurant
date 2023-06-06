@@ -89,8 +89,8 @@ class BlogController extends AbstractController
     public function saveFormData(Request $request): Response
     {
         // Récupérer les données du formulaire
-        $name = $request->request->get('name');
-        $message = $request->request->get('message');
+        $titre = $request->request->get('titre');
+        $contenu = $request->request->get('contenu');
 
         // Créer une nouvelle instance de l'entité Post
         $post = new Post();
