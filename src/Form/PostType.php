@@ -42,8 +42,8 @@ class PostType extends AbstractType
             ->add('date', DateType::class, [
                 'label' => 'Date',
             ])
-            ->add('autheur', TextType::class, [
-                'label' => 'Autheur',
+            ->add('auteur', TextType::class, [
+                'label' => 'auteur',
             ])
         ;
     }

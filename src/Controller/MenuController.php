@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class MenuController extends AbstractController
 {
@@ -26,6 +28,26 @@ class MenuController extends AbstractController
         // Gère la soumission du formulaire
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // Génère un nom de fichier unique pour éviter les collisions
+                $newFilename = $originalFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+
+                // Déplace le fichier vers un répertoire spécifique
+                try {
+                    $imageFile->move(
+                        $this->getParameter('menu_images_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // Gérer les erreurs de déplacement du fichier ici
+                }
+
+                // Met à jour la propriété imagePath de l'entité Menu avec le chemin du fichier
+                $menu->setImage($newFilename);
+            }
             // Si le formulaire est soumis et valide, persiste l'entité Menu en base de données
             $entityManager->persist($menu);
             $entityManager->flush();
