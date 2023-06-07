@@ -46,7 +46,7 @@ class BlogController extends AbstractController
 
                 try {
                     $imageFile->move(
-                        $this->getParameter('posts_directory'),
+                        $this->getParameter('blog_directory'),
                         $newFilename
                     );
                 } catch (FileException $e) {

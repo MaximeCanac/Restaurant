@@ -1,10 +1,6 @@
-{# templates/avis/index.html.twig #}
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Avis{% endblock %}
-
-
 
 {% block body %}
     <div class="container">
@@ -12,7 +8,6 @@
         <table class="table mt-4">
             <thead>
                 <tr>
-                    
                     <th>Note</th>
                     <th>Commentaire</th>
                     <th>Date</th>
@@ -21,10 +16,9 @@
             <tbody>
                 {% for avi in avis %}
                     <tr>
-                        
                         <td>{{ avi.note }}</td>
-                        <td>{{ avi.commentaire }}</td>
-                        <td>{{ avi.date|date('Y-m-d') }}</td>
+                        <td class="text-truncate">{{ avi.commentaire }}</td>
+                        <td class="text-truncate">{{ avi.date|date('Y-m-d') }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
