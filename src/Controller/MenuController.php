@@ -53,7 +53,7 @@ class MenuController extends AbstractController
             $entityManager->flush();
 
             // Redirige vers la page d'affichage du menu nouvellement créé
-            return $this->redirectToRoute('app_menu_show', ['id' => $menu->getId()]);
+            return $this->redirectToRoute('app_menu_last');
         }
 
         // Affiche le formulaire dans le template menu/index.html.twig
@@ -66,7 +66,7 @@ class MenuController extends AbstractController
     public function last(EntityManagerInterface $entityManager): Response
     {
         // Récupère le dernier menu enregistré en se basant sur la date de création
-        $menu = $entityManager->getRepository(Menu::class)->findOneBy([], ['dateCreation' => 'DESC']);
+        $menu = $entityManager->getRepository(Menu::class)->findOneBy([], ['id' => 'DESC']);
 
         // Affiche le menu dans le template menu/show.html.twig
         return $this->render('menu/show.html.twig', [
@@ -87,7 +87,7 @@ class MenuController extends AbstractController
     public function generatePdf(EntityManagerInterface $entityManager): Response
     {
         // Récupérer le contenu du menu à partir de votre source de données
-        $menu = $entityManager->getRepository(Menu::class)->findOneBy([], ['dateCreation' => 'DESC']); // Exemple avec une entité Menu
+        $menu = $entityManager->getRepository(Menu::class)->findOneBy([], ['id' => 'DESC']); // Exemple avec une entité Menu
 
         // Rendre le template Twig pour le contenu du menu
         $html = $this->renderView('menu/menu_pdf.html.twig', [
