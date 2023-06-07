@@ -27,7 +27,7 @@ class Post
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $autheur = null;
+    private ?string $auteur = null;
 
     public function getId(): ?int
     {
@@ -82,14 +82,14 @@ class Post
         return $this;
     }
 
-    public function getAutheur(): ?string
+    public function getauteur(): ?string
     {
-        return $this->autheur;
+        return $this->auteur;
     }
 
-    public function setAutheur(string $autheur): self
+    public function setauteur(string $auteur): self
     {
-        $this->autheur = $autheur;
+        $this->auteur = $auteur;
 
         return $this;
     }

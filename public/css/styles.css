@@ -1,5 +1,5 @@
 
-   
+ /* accueil */
 .center
   {
   position: absolute;
@@ -36,33 +36,41 @@ img
   background-color: #8c8c8c;
   }
 
-  /* Select stylisé */
-select {
-  background: #fff;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
-  color: #444;
-  font-size: 16px;
-  line-height: 1.3;
-  margin: 0 0 10px;
-  padding: 6px 10px;
-  transition: border-color 0.3s ease;
-  width: 100%;
+  /* menu */
+body.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: "Goudy Bookletter 1911", serif;
 }
 
-/* Select focus */
-select:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-  outline: none;
+.menu {
+    text-align: center;
 }
 
+.menu-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
 
+.menu-section-title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.menu-item {
+    font-size: 20px;
+    margin-bottom: 5px;
+    text-align: left;
+}
 ul.menu-items {
-  list-style-type: none;
+list-style-type: none;
 }
 li.menu-item:before {
-  content: '- ';
+content: '* ';
 }
 

@@ -5,7 +5,10 @@
 {% block body %}
     <div class="container">
         <div class="menu text-center">
-            <h1 class="menu-title">Menu</h1>
+            {% if menu.image %}
+                <img src="{{ asset(menu.image) }}" alt="Dernière image" class="menu-image">
+            {% endif %}
+            <h1 class="menu-title">Menu du jour</h1>
             <hr class="menu-divider">
 
             <div class="menu-section">
