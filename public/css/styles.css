@@ -9,7 +9,6 @@
 
 
 img
-<<<<<<< HEAD
   {
     width : 40vw;
     height : 40vh;
@@ -17,25 +16,13 @@ img
     max-height : 300p
   }
   
-
-  
-=======
- {
-   width : 40vw;
-   height : 40vh;
-   max-width : 600px;
-   max-height : 300p
- }
- 
-.button
- {
-   height:200px;
-   width: 240px;
-   align-items: center; 
-   background-color: #8c8c8c;
-   
- }
->>>>>>> 596ce7b898f5d3c8cfff043ac2f08f332005df84
+.imageHotel
+{
+  width : 50vw;
+  height : 35vh;
+  max-width : 800px;
+  max-height : 700p
+}
 
 .flex-container
  {
