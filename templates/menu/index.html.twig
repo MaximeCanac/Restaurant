@@ -1,15 +1,25 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}Menu Création{% endblock %}
+
 {% block body %}
     <div class="container">
         <h1>Création d'un menu</h1>
+        
 
-        {{ form_start(form, {'attr': {'class': 'menu-form'}}) }}
+        {{ form_start(imageForm, {'attr': {'class': 'image-form'}}) }}
         <div class="form-group">
-        {{ form_label(form.image, 'Image') }}
-        {{ form_widget(form.image, {'attr': {'class': 'form-control-file'}}) }}
+            {{ form_label(imageForm.image, 'Image') }}
+            {{ form_widget(imageForm.image, {'attr': {'class': 'form-control-file'}}) }}
         </div>
 
+        {{ form_row(imageForm._token) }}
+
+        <button type="submit" class="btn btn-primary">Ajouter Image</button>
+
+        {{ form_end(imageForm) }}
+
+        {{ form_start(form, {'attr': {'class': 'menu-form'}}) }}
         <div class="form-group">
             {{ form_label(form.entrees, 'Entrées') }}
             {{ form_widget(form.entrees, {'attr': {'class': 'form-control'}}) }}
@@ -30,5 +40,7 @@
         <button type="submit" class="btn btn-primary">Créer</button>
 
         {{ form_end(form) }}
+
+        
     </div>
 {% endblock %}

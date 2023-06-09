@@ -14,9 +14,9 @@ class ImageType extends AbstractType
     {
         $builder
         ->add('image', FileType::class, [ // Ajoutez le champ FileType pour l'image
-            'label' => 'Image',
+            'label' => 'image',
             'required' => false, // Rendre le champ facultatif
-            'mapped' => false, // Ne pas lier le champ à une propriété de l'entité Menu
+            'mapped' => false, 
         ])
         ;
     }

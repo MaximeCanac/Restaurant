@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use Dompdf\Dompdf;
 use App\Entity\Menu;
+use App\Entity\ImageMenu;
+use App\Form\ImageType;
 use App\Form\MenuType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,21 +23,33 @@ class MenuController extends AbstractController
         // Crée une nouvelle instance de l'entité Menu
         $menu = new Menu();
         $menu->setDateCreation(new \DateTime());
+        $ImageMenu = new ImageMenu();
 
         // Crée un formulaire en utilisant le type de formulaire MenuType et l'entité Menu
         $form = $this->createForm(MenuType::class, $menu);
 
-        // Gère la soumission du formulaire
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        // Crée un formulaire séparé pour l'image
+        $imageForm = $this->createForm(ImageType::class, $ImageMenu);
 
-            $imageFile = $form->get('image')->getData();
+        // Gère la soumission du formulaire principal et du formulaire d'image
+        $form->handleRequest($request);
+        $imageForm->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $entityManager->persist($menu);
+            $entityManager->flush();
+            
+            return $this->redirectToRoute('app_menu_last');
+        }
+
+        if ($imageForm->isSubmitted() && $imageForm->isValid()) {
+            $imageFile = $imageForm->get('image')->getData();
+
             if ($imageFile) {
                 $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // Génère un nom de fichier unique pour éviter les collisions
                 $newFilename = $originalFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
 
-                // Déplace le fichier vers un répertoire spécifique
                 try {
                     $imageFile->move(
                         $this->getParameter('menu_images_directory'),
@@ -43,23 +57,22 @@ class MenuController extends AbstractController
                     );
                 } catch (FileException $e) {
                     // Gérer les erreurs de déplacement du fichier ici
+                    
                 }
 
-                // Met à jour la propriété imagePath de l'entité Menu avec le chemin du fichier
-                $menu->setImage($newFilename);
+                $ImageMenu->setImage($newFilename);
             }
-            // Si le formulaire est soumis et valide, persiste l'entité Menu en base de données
-            $entityManager->persist($menu);
-            $entityManager->flush();
 
-            // Redirige vers la page d'affichage du menu nouvellement créé
-            return $this->redirectToRoute('app_menu_last');
+            
+            $entityManager->persist($ImageMenu);
+            $entityManager->flush();
         }
 
-        // Affiche le formulaire dans le template menu/index.html.twig
         return $this->render('menu/index.html.twig', [
             'form' => $form->createView(),
+            'imageForm' => $imageForm->createView(),
         ]);
+    
     }
     
     #[Route(path: '/menu/last', name: 'app_menu_last')]
@@ -67,19 +80,22 @@ class MenuController extends AbstractController
     {
         // Récupère le dernier menu enregistré en se basant sur la date de création
         $menu = $entityManager->getRepository(Menu::class)->findOneBy([], ['id' => 'DESC']);
+        $imageMenu = $entityManager->getRepository(ImageMenu::class)->findOneBy([], ['id' => 'DESC']);
 
         // Affiche le menu dans le template menu/show.html.twig
         return $this->render('menu/show.html.twig', [
             'menu' => $menu,
+            'imageMenu' => $imageMenu,
         ]);
     }
 
     #[Route(path: '/menu/{id}', name: 'app_menu_show', methods: ['GET'], requirements: ['id' => '\d+'])]
-    public function show(Menu $menu): Response
+    public function show(Menu $menu,ImageMenu $imageMenu): Response
     {
         // Affiche le menu spécifié dans le template menu/show.html.twig
         return $this->render('menu/show.html.twig', [
             'menu' => $menu,
+            'imageMenu' => $imageMenu,
         ]);
     }
 
@@ -88,10 +104,12 @@ class MenuController extends AbstractController
     {
         // Récupérer le contenu du menu à partir de votre source de données
         $menu = $entityManager->getRepository(Menu::class)->findOneBy([], ['id' => 'DESC']); // Exemple avec une entité Menu
+        $imageMenu = $entityManager->getRepository(ImageMenu::class)->findOneBy([], ['id' => 'DESC']);
 
         // Rendre le template Twig pour le contenu du menu
         $html = $this->renderView('menu/menu_pdf.html.twig', [
             'menu' => $menu,
+            'imageMenu' => $imageMenu,
         ]);
 
         // Créer une instance de Dompdf

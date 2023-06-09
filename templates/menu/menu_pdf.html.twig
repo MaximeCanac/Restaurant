@@ -43,8 +43,8 @@ content: '* ';
 </head>
 <body>
     <div class="menu">
-            {% if menu.image %}
-                <img src="{{ asset('images/menu_directory/' ~ menu.image) }}" alt="Dernière image" class="menu-image">
+            {% if imageMenu.image %}
+                <img src="{{ asset('images/menu_directory/' ~ imageMenu.image) }}" alt="Dernière image" class="menu-image">
             {% endif %}
         <h1 class="menu-title">Menu du jour</h1>
         <p>Menu (entrée + plat + dessert): 20.00 €</p>
