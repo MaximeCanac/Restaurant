@@ -5,23 +5,24 @@
 {% block body %}
     <div class="container">
         <h1 class="mt-4">Les avis</h1>
-        <table class="table mt-4">
-            <thead>
-                <tr>
-                    <th>Note</th>
-                    <th>Commentaire</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for avi in avis %}
-                    <tr>
-                        <td>{{ avi.note }}</td>
-                        <td class="text-truncate">{{ avi.commentaire }}</td>
-                        <td class="text-truncate">{{ avi.date|date('Y-m-d') }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-body">
+                        {% for avi in avis %}
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <span class="rating">{{ avi.note }}/5</span>
+                                    <span class="date">{{ avi.date|date('Y-m-d') }}</span>
+                                </div>
+                                <div class="card-body">
+                                    <p class="comment">{{ avi.commentaire }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

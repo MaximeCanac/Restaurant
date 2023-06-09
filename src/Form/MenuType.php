@@ -18,11 +18,7 @@ class MenuType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('image', FileType::class, [ // Ajoutez le champ FileType pour l'image
-                'label' => 'Image',
-                'required' => false, // Rendre le champ facultatif
-                'mapped' => false, // Ne pas lier le champ à une propriété de l'entité Menu
-            ])
+            
             ->add('entrees', EntityType::class, [
                 'class' => Entree::class,
                 'multiple' => true,
