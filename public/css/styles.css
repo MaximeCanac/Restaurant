@@ -16,8 +16,13 @@ img
     max-height : 300p
   }
   
-
-  
+  .imageHotel
+  {
+    width : 50vw;
+    height : 35vh;
+    max-width : 800px;
+    max-height : 700p
+  }
 
 .flex-container
  {
