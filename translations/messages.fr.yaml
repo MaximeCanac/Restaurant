@@ -1,0 +1,4 @@
+# translations/messages.fr.yaml
+security:
+    login:
+        error_bad_credentials: "Identifiant ou mot de passe incorrect."
