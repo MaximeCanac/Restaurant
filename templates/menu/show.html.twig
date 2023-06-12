@@ -6,7 +6,7 @@
     <div class="container">
         <div class="menu text-center">
             {% if imageMenu.image %}
-                <img src="{{ asset('images/menu_directory/' ~ imageMenu.image) }}" alt="Dernière image" class="menu-image">
+                <img src="{{ asset('images/menu_directory/' ~ imageMenu.image) }}" alt="Dernière image" class="menu-image" style="max-width: 300px; height: auto;">
             {% endif %}
             <h1 class="menu-title">Menu du jour</h1>
             <hr class="menu-divider">

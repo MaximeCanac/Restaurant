@@ -43,9 +43,14 @@ content: '* ';
 </head>
 <body>
     <div class="menu">
-            {% if imageMenu.image %}
-                <img src="{{ asset('images/menu_directory/' ~ imageMenu.image) }}" alt="Dernière image" class="menu-image">
-            {% endif %}
+            {% if imageData %}
+    {% set imageUri = 'data:image/' ~ imageType ~ ';base64,' ~ imageData %}
+    <div class="image-container" style="margin-top: 10px; margin-bottom: 10px;">
+        <img src="{{ imageUri }}" alt="Dernière image" class="menu-image" style="max-width: 300px; height: auto;">
+    </div>
+{% endif %}
+
+
         <h1 class="menu-title">Menu du jour</h1>
         <p>Menu (entrée + plat + dessert): 20.00 €</p>
         <p>Formule (entrée + plat ou plat + dessert): 17.00 €</p>
