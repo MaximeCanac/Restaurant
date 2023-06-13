@@ -17,7 +17,7 @@ class Avis
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $note = null;
+    private ?float $note = null;
 
     #[ORM\Column(length: 255)]
     private ?string $commentaire = null;
@@ -30,12 +30,12 @@ class Avis
         return $this->id;
     }
 
-    public function getNote(): ?int
+    public function getNote(): ?float
     {
         return $this->note;
     }
 
-    public function setNote(int $note): self
+    public function setNote(float $note): self
     {
         $this->note = $note;
 

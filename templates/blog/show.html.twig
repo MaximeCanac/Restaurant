@@ -21,6 +21,11 @@
                         </p>
                     </div>
                 </div>
+                {% if post.image %}
+                    <div class="col-md-4">
+                        <img src="{{ asset('images/blog_directory/' ~ post.image) }}" class="card-img-top" alt="Image du post">
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
