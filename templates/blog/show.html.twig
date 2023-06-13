@@ -5,16 +5,22 @@
 {% block body %}
     <div class="container">
         <div class="card my-4">
-            {% if post.image %}
-                <img src="{{ asset('images/blog_directory/' ~ post.image) }}" class="card-img-top" alt="Image du post">
-            {% endif %}
-            <div class="card-body">
-                <h2 class="card-title">{{ post.titre }}</h2>
-                <p class="card-text">{{ post.contenu }}</p>
-                <p class="card-text">
-                    <strong>Date :</strong> {{ post.date|date('d/m/Y') }}<br>
-                    <strong>Auteur :</strong> {{ post.auteur }}
-                </p>
+            <div class="row">
+                <div class="col-md-4">
+                    {% if post.image %}
+                        <img src="{{ asset('images/blog_directory/' ~ post.image) }}" class="card-img-top" alt="Image du post">
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h2 class="card-title text-right">{{ post.titre }}</h2>
+                        <p class="card-text">{{ post.contenu }}</p>
+                        <p class="card-text">
+                            <strong>Date :</strong> {{ post.date|date('d/m/Y') }}<br>
+                            <strong>Auteur :</strong> {{ post.auteur }}
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
