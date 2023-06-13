@@ -43,7 +43,7 @@ class PostType extends AbstractType
                 'label' => 'Date',
             ])
             ->add('auteur', TextType::class, [
-                'label' => 'auteur',
+                'label' => 'Auteur',
             ])
         ;
     }

@@ -19,9 +19,11 @@
                         </div>
                     </div>
                 </div>
-            {% endfor %}
+            {% endfor %} 
+             {% if is_granted('ROLE_ADMIN') %}
         </div>
-
+           
         <a class="btn btn-primary" href="{{ path('blog_new') }}">Nouveau Post</a>
     </div>
+     {% endif %} 
 {% endblock %}
