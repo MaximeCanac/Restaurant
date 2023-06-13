@@ -9,6 +9,8 @@
                 <img src="{{ asset('images/menu_directory/' ~ imageMenu.image) }}" alt="Dernière image" class="menu-image" style="max-width: 300px; height: auto;">
             {% endif %}
             <h1 class="menu-title">Menu du jour</h1>
+            <p>Menu (entrée + plat + dessert): 20.00 €</p>
+            <p>Formule (entrée + plat ou plat + dessert): 17.00 €</p>
             <hr class="menu-divider">
 
             <div class="menu-section">
@@ -49,6 +51,10 @@
                     {% endfor %}
                 </ul>
             </div>
+            <p>Prix exprimés en euros, TTC,hors boissons, service compris. Tous nos plats sont fait maison,
+             à partir de produits frais et de saison. La liste des allergènes susceptibles d'être ajoutés à
+              nos plats est disponble à la réception.</p>
+            <p>*l'abus d'alcool est dangereux pour la santé, sachez consommer avec modération.</p>
         </div>
     </div>
     {% if is_granted('ROLE_ADMIN') %}

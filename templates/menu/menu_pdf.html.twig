@@ -4,52 +4,57 @@
     <meta charset="UTF-8">
     <style>
     body.menu {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   height: 100vh;
-   font-family: "Goudy Bookletter 1911", serif;
-}
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: "Goudy Bookletter 1911", serif;
+    }
 
-.menu {
-   text-align: center;
-}
+    .menu {
+        text-align: center;
+    }
 
-.menu-title {
-   font-size: 30px;
-   font-weight: bold;
-   margin-bottom: 20px;
-}
+    .menu-title {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
 
-.menu-section-title {
-   font-size: 26px;
-   font-weight: bold;
-   margin-top: 20px;
-   margin-bottom: 10px;
-}
+    .menu-section-title {
+        font-size: 26px;
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
 
-.menu-item {
-   font-size: 20px;
-   margin-bottom: 5px;
-   text-align: left;
-}
-ul.menu-items {
-list-style-type: none;
-}
-li.menu-item:before {
-content: '* ';
-}
-</style>
+    .menu-item {
+        font-size: 20px;
+        margin-bottom: 5px;
+        text-align: left;
+    }
+    
+    ul.menu-items {
+        list-style-type: none;
+    }
+    
+    li.menu-item:before {
+        content: '* ';
+    }
+    
+    .menu-small {
+        font-size: 14px;
+    }
+    </style>
 </head>
 <body>
     <div class="menu">
-            {% if imageData %}
-    {% set imageUri = 'data:image/' ~ imageType ~ ';base64,' ~ imageData %}
-    <div class="image-container" style="margin-top: 10px; margin-bottom: 10px;">
-        <img src="{{ imageUri }}" alt="Dernière image" class="menu-image" style="max-width: 300px; height: auto;">
-    </div>
-{% endif %}
-
+        {% if imageData %}
+            {% set imageUri = 'data:image/' ~ imageType ~ ';base64,' ~ imageData %}
+            <div class="image-container" style="margin-top: 10px; margin-bottom: 10px;">
+                <img src="{{ imageUri }}" alt="Dernière image" class="menu-image" style="max-width: 300px; height: auto;">
+            </div>
+        {% endif %}
 
         <h1 class="menu-title">Menu du jour</h1>
         <p>Menu (entrée + plat + dessert): 20.00 €</p>
@@ -87,6 +92,12 @@ content: '* ';
                 {% endfor %}
             </ul>
         </div>
+        
+        <p class="menu-small">Prix exprimés en euros, TTC, hors boissons, service compris. Tous nos plats sont faits maison,
+            à partir de produits frais et de saison. La liste des allergènes susceptibles d'être ajoutés à
+            nos plats est disponible à la réception.</p>
+        
+        <p class="menu-small">* L'abus d'alcool est dangereux pour la santé, sachez consommer avec modération.</p>
     </div>
 </body>
 </html>
