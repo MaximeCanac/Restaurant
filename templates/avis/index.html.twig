@@ -17,10 +17,9 @@
                                     <div class="rating">
                                         {% for i in 1..5 %}
                                             {% if i <= avi.note %}
-                                                <i>★</i> <!-- Icône étoile pleine -->
+                                                <i>★</i> 
                                             {% else %}
-                                                <i>☆</i> <!-- Icône étoile vide -->
-                                            {% endif %}
+                                                <i>☆</i> 
                                         {% endfor %}
                                     </div>
                                     <span class="date">{{ avi.date|date('Y-m-d') }}</span>
