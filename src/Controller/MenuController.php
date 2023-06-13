@@ -106,10 +106,17 @@ class MenuController extends AbstractController
         $menu = $entityManager->getRepository(Menu::class)->findOneBy([], ['id' => 'DESC']); // Exemple avec une entité Menu
         $imageMenu = $entityManager->getRepository(ImageMenu::class)->findOneBy([], ['id' => 'DESC']);
 
+        $imagePath = 'images/menu_directory/'. $imageMenu->getImage();
+        $imageType = pathinfo($imagePath, PATHINFO_EXTENSION); 
+
+        // Lisez le fichier image et encodez-le en base64
+        $imageData = base64_encode(file_get_contents($imagePath));
+
         // Rendre le template Twig pour le contenu du menu
         $html = $this->renderView('menu/menu_pdf.html.twig', [
             'menu' => $menu,
-            'imageMenu' => $imageMenu,
+            'imageType' => $imageType,
+            'imageData' => $imageData,
         ]);
 
         // Créer une instance de Dompdf
