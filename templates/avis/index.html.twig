@@ -14,7 +14,15 @@
                         {% for avi in avis %}
                             <div class="card mb-3">
                                 <div class="card-header">
-                                    <span class="rating">{{ avi.note }}/5</span>
+                                    <div class="rating">
+                                        {% for i in 1..5 %}
+                                            {% if i <= avi.note %}
+                                                <i>★</i> <!-- Icône étoile pleine -->
+                                            {% else %}
+                                                <i>☆</i> <!-- Icône étoile vide -->
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
                                     <span class="date">{{ avi.date|date('Y-m-d') }}</span>
                                 </div>
                                 <div class="card-body">
