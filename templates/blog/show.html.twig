@@ -6,11 +6,6 @@
     <div class="container">
         <div class="card my-4">
             <div class="row">
-                <div class="col-md-4">
-                    {% if post.image %}
-                        <img src="{{ asset('images/blog_directory/' ~ post.image) }}" class="card-img-top" alt="Image du post">
-                    {% endif %}
-                </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <h2 class="card-title text-right">{{ post.titre }}</h2>
